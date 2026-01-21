@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <!-- Meta tags de responsividade -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-<meta name="HandheldFriendly" content="true">
-<meta name="MobileOptimized" content="width">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<!-- Suporte para temas claro/escuro -->
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#3498db" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: dark)">
-
-<!-- Meta tags para iOS -->
-<meta name="apple-mobile-web-app-title" content="Rio Cleaning">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<!-- Meta tags para Android -->
-<meta name="mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#3498db" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-title" content="Rio Cleaning">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <title>Schedule Service - Rio Cleaning</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -34,9 +32,9 @@
                 <li><a href="schedule.html">Schedule Service</a></li>
                 <li><a href="admin.html" class="admin-link">Admin</a></li>
             </ul>
-            <div class="menu-toggle">
+            <button class="menu-toggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -51,30 +49,30 @@
             <form id="cleaningServiceForm">
                 <div class="form-group">
                     <label for="fullName"><i class="fas fa-user"></i> Full Name *</label>
-                    <input type="text" id="fullName" name="fullName" required>
+                    <input type="text" id="fullName" name="fullName" required aria-required="true">
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="phone"><i class="fas fa-phone"></i> Phone *</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" required aria-required="true" pattern="[0-9\-\+\s\(\)]{10,}">
                     </div>
                     
                     <div class="form-group">
                         <label for="email"><i class="fas fa-envelope"></i> Email *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required aria-required="true">
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="address"><i class="fas fa-map-marker-alt"></i> Address *</label>
-                    <input type="text" id="address" name="address" required>
+                    <input type="text" id="address" name="address" required aria-required="true">
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="serviceType"><i class="fas fa-broom"></i> Service Type *</label>
-                        <select id="serviceType" name="serviceType" required>
+                        <select id="serviceType" name="serviceType" required aria-required="true">
                             <option value="">Select a service</option>
                             <option value="house">House Cleaning</option>
                             <option value="church">Church Cleaning</option>
@@ -100,12 +98,12 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="cleaningDate"><i class="fas fa-calendar"></i> Preferred Date *</label>
-                        <input type="text" id="cleaningDate" name="cleaningDate" class="datepicker" required>
+                        <input type="text" id="cleaningDate" name="cleaningDate" class="datepicker" required aria-required="true" placeholder="Select a date">
                     </div>
                     
                     <div class="form-group">
                         <label for="cleaningTime"><i class="fas fa-clock"></i> Preferred Time *</label>
-                        <select id="cleaningTime" name="cleaningTime" required>
+                        <select id="cleaningTime" name="cleaningTime" required aria-required="true">
                             <option value="">Select a time</option>
                             <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
                             <option value="afternoon">Afternoon (1:00 PM - 5:00 PM)</option>
@@ -116,7 +114,7 @@
                 
                 <div class="form-group">
                     <label for="description"><i class="fas fa-file-alt"></i> Service Description *</label>
-                    <textarea id="description" name="description" rows="4" required placeholder="Please describe the cleaning service needed, any special requests, or additional information..."></textarea>
+                    <textarea id="description" name="description" rows="4" required aria-required="true" placeholder="Please describe the cleaning service needed, any special requests, or additional information..."></textarea>
                 </div>
                 
                 <div class="form-actions">
@@ -128,8 +126,12 @@
                     </button>
                 </div>
                 
-                <div id="formMessage" class="form-message"></div>
+                <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
             </form>
+            
+            <div class="form-footer">
+                <p><i class="fas fa-info-circle"></i> We'll contact you within 24 hours to confirm your appointment.</p>
+            </div>
         </div>
     </section>
 
@@ -154,55 +156,150 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase.js"></script>
     <script src="script.js"></script>
     <script>
         // Initialize date picker
-        flatpickr("#cleaningDate", {
-            minDate: "today",
-            dateFormat: "Y-m-d",
-            disable: [
-                function(date) {
-                    // Disable Sundays
-                    return (date.getDay() === 0);
-                }
-            ]
-        });
-        
-        // Form submission
-        document.getElementById('cleaningServiceForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('cleaningDate');
             
-            const formData = {
-                fullName: document.getElementById('fullName').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                address: document.getElementById('address').value,
-                serviceType: document.getElementById('serviceType').value,
-                bedrooms: document.getElementById('bedrooms').value,
-                cleaningDate: document.getElementById('cleaningDate').value,
-                cleaningTime: document.getElementById('cleaningTime').value,
-                description: document.getElementById('description').value,
-                status: 'pending', // Default status
-                createdAt: new Date().toISOString()
-            };
+            if (dateInput) {
+                flatpickr(dateInput, {
+                    minDate: "today",
+                    dateFormat: "Y-m-d",
+                    disable: [
+                        function(date) {
+                            // Disable Sundays
+                            return (date.getDay() === 0);
+                        }
+                    ],
+                    ariaDateFormat: "F j, Y",
+                    position: "auto",
+                    appendTo: document.querySelector('.form-group:has(#cleaningDate)'),
+                    onReady: function(selectedDates, dateStr, instance) {
+                        if (window.innerWidth < 768) {
+                            instance.mobileInput.setAttribute('inputmode', 'none');
+                        }
+                    }
+                });
+            }
             
-            const messageEl = document.getElementById('formMessage');
-            
-            try {
-                const result = await window.supabaseClient.addServiceRequest(formData);
-                
-                if (result.error) {
-                    messageEl.innerHTML = `<div class="alert error">Error: ${result.error.message}</div>`;
-                } else {
-                    messageEl.innerHTML = '<div class="alert success">Service request submitted successfully! We will contact you soon to confirm.</div>';
-                    document.getElementById('cleaningServiceForm').reset();
+            // Form submission
+            const form = document.getElementById('cleaningServiceForm');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
                     
-                    // Scroll to message
-                    messageEl.scrollIntoView({ behavior: 'smooth' });
+                    // Show loading state
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+                    submitBtn.disabled = true;
+                    
+                    const formData = {
+                        fullName: document.getElementById('fullName').value.trim(),
+                        phone: document.getElementById('phone').value.trim(),
+                        email: document.getElementById('email').value.trim(),
+                        address: document.getElementById('address').value.trim(),
+                        serviceType: document.getElementById('serviceType').value,
+                        bedrooms: parseInt(document.getElementById('bedrooms').value) || 0,
+                        cleaningDate: document.getElementById('cleaningDate').value,
+                        cleaningTime: document.getElementById('cleaningTime').value,
+                        description: document.getElementById('description').value.trim(),
+                        status: 'pending',
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    const messageEl = document.getElementById('formMessage');
+                    
+                    try {
+                        // Validate form
+                        if (!formData.fullName || !formData.phone || !formData.email || !formData.address || 
+                            !formData.serviceType || !formData.cleaningDate || !formData.cleaningTime || 
+                            !formData.description) {
+                            throw new Error('Please fill all required fields');
+                        }
+                        
+                        const result = await window.supabaseClient.addServiceRequest(formData);
+                        
+                        if (result.error) {
+                            throw new Error(result.error.message || 'Error submitting form');
+                        } else {
+                            messageEl.innerHTML = '<div class="alert success"><i class="fas fa-check-circle"></i> Service request submitted successfully! We will contact you soon to confirm.</div>';
+                            form.reset();
+                            
+                            // Scroll to message
+                            messageEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            // Focus on success message for screen readers
+                            messageEl.setAttribute('tabindex', '-1');
+                            messageEl.focus();
+                            
+                            // Reset form after 5 seconds
+                            setTimeout(() => {
+                                messageEl.innerHTML = '';
+                            }, 5000);
+                        }
+                    } catch (error) {
+                        messageEl.innerHTML = `<div class="alert error"><i class="fas fa-exclamation-circle"></i> ${error.message}</div>`;
+                        
+                        // Scroll to error message
+                        messageEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } finally {
+                        // Reset button state
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+            
+            // Form validation on blur
+            const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+            });
+            
+            function validateField(field) {
+                const value = field.value.trim();
+                const errorElement = field.parentElement.querySelector('.field-error') || 
+                                   document.createElement('div');
+                
+                if (!errorElement.classList.contains('field-error')) {
+                    errorElement.className = 'field-error';
+                    field.parentElement.appendChild(errorElement);
                 }
-            } catch (error) {
-                messageEl.innerHTML = `<div class="alert error">An error occurred: ${error.message}</div>`;
+                
+                if (!value) {
+                    errorElement.textContent = 'This field is required';
+                    field.setAttribute('aria-invalid', 'true');
+                } else {
+                    errorElement.textContent = '';
+                    field.setAttribute('aria-invalid', 'false');
+                    
+                    // Additional validations
+                    if (field.type === 'email' && !isValidEmail(value)) {
+                        errorElement.textContent = 'Please enter a valid email address';
+                        field.setAttribute('aria-invalid', 'true');
+                    }
+                    
+                    if (field.id === 'phone' && !isValidPhone(value)) {
+                        errorElement.textContent = 'Please enter a valid phone number';
+                        field.setAttribute('aria-invalid', 'true');
+                    }
+                }
+            }
+            
+            function isValidEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            }
+            
+            function isValidPhone(phone) {
+                // Remove all non-digit characters except +, (, ), -, and spaces
+                const digits = phone.replace(/[^\d+\(\s\)-]/g, '');
+                return digits.length >= 10;
             }
         });
     </script>
