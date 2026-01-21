@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
-    <!-- Meta tags de responsividade -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-<meta name="HandheldFriendly" content="true">
-<meta name="MobileOptimized" content="width">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-<!-- Suporte para temas claro/escuro -->
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#3498db" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: dark)">
-
-<!-- Meta tags para iOS -->
-<meta name="apple-mobile-web-app-title" content="Rio Cleaning">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<!-- Meta tags para Android -->
-<meta name="mobile-web-app-capable" content="yes">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#3498db" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#2c3e50" media="(prefers-color-scheme: dark)">
+    <meta name="apple-mobile-web-app-title" content="Rio Cleaning">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <title>Rio Cleaning - Professional Cleaning Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -34,9 +32,9 @@
                 <li><a href="schedule.html">Schedule Service</a></li>
                 <li><a href="admin.html" class="admin-link">Admin</a></li>
             </ul>
-            <div class="menu-toggle">
+            <button class="menu-toggle" aria-label="Menu">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -126,6 +124,9 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
