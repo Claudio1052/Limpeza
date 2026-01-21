@@ -4,45 +4,39 @@ Professional cleaning service website with booking system and admin dashboard.
 
 ## Features
 
-- Customer service request form
-- Admin dashboard with statistics
-- Service request management (view, edit, delete, update status)
-- Responsive design for all devices
-- Supabase backend for data storage
+- **Customer Service Request Form**: Easy scheduling with validation
+- **Admin Dashboard**: Complete management system with statistics
+- **Responsive Design**: Works on all devices from mobile to desktop
+- **Supabase Backend**: Secure data storage and management
+- **PWA Support**: Install as app on mobile devices
+- **Offline Support**: Works without internet connection
+- **Dark Mode**: Automatic system theme detection
+
+## Live Demo
+
+[https://your-username.github.io/rio-cleaning](https://your-username.github.io/rio-cleaning)
 
 ## Setup Instructions
 
-1. **Supabase Configuration**:
-   - Create a Supabase account at https://supabase.com
-   - Create a new project
-   - Run the SQL script in `sql_setup.sql` to create the table
-   - Update the Supabase URL and anon key in `supabase.js`
+### 1. Supabase Setup
 
-2. **GitHub Pages Deployment**:
-   - Upload all files to a GitHub repository
-   - Go to repository Settings > Pages
-   - Select source branch (usually `main`)
-   - Save and wait for deployment
-   - Your site will be available at `https://[username].github.io/[repository-name]`
+1. Create a Supabase account at [https://supabase.com](https://supabase.com)
+2. Create a new project
+3. Run the SQL script from `supabase_setup.sql` in the SQL editor
+4. Note your project URL and anon key from Settings > API
+5. Update `supabase.js` with your credentials
 
-3. **Admin Access**:
-   - Default admin password: `admin123`
-   - Change this in `admin.js` for production use
+### 2. Local Development
 
-## Files Structure
+```bash
+# Clone the repository
+git clone https://github.com/your-username/rio-cleaning.git
 
-- `index.html` - Main website page
-- `schedule.html` - Service scheduling form
-- `admin.html` - Admin dashboard
-- `style.css` - All styles
-- `script.js` - Main JavaScript
-- `supabase.js` - Supabase configuration and functions
-- `admin.js` - Admin dashboard functionality
+# Navigate to project
+cd rio-cleaning
 
-## Security Notes
-
-- This is a demo application. For production use:
-  - Implement proper authentication for admin access
-  - Use environment variables for Supabase credentials
-  - Add input validation and sanitization
-  - Enable Row Level Security in Supabase
+# Open in browser
+# You can use any local server, for example:
+python -m http.server 8000
+# or
+npx serve .
