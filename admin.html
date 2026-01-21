@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Rio Cleaning</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-broom"></i> Rio Cleaning Admin</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="schedule.html">Schedule Service</a></li>
+                <li><a href="admin.html" class="admin-link active">Admin Dashboard</a></li>
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-container">
+        <!-- Admin Login (if not authenticated) -->
+        <div id="adminLogin" class="admin-login">
+            <div class="login-container">
+                <h2><i class="fas fa-lock"></i> Admin Login</h2>
+                <p>Enter the admin password to access the dashboard</p>
+                <div class="form-group">
+                    <label for="adminPassword">Password</label>
+                    <input type="password" id="adminPassword" placeholder="Enter admin password">
+                </div>
+                <button id="loginBtn" class="btn btn-primary">Login</button>
+                <div id="loginMessage" class="form-message"></div>
+                <p class="note">Note: For this demo, use password: <strong>admin123</strong></p>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard (visible after login) -->
+        <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+            <div class="container">
+                <!-- Dashboard Stats -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="pendingCount">0</h3>
+                            <p>Pending</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon confirmed">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="confirmedCount">0</h3>
+                            <p>Confirmed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon completed">
+                            <i class="fas fa-flag-checkered"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="completedCount">0</h3>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon total">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalCount">0</h3>
+                            <p>Total This Month</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <h3>Service Requests</h3>
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <label for="statusFilter">Filter by Status:</label>
+                            <select id="statusFilter">
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="dateFilter">Filter by Date:</label>
+                            <select id="dateFilter">
+                                <option value="all">All Dates</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="searchFilter">Search:</label>
+                            <input type="text" id="searchFilter" placeholder="Search by name, email or address">
+                        </div>
+                        <button id="refreshBtn" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    </div>
+                </div>
+
+                <!-- Service Requests Table -->
+                <div class="service-requests">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Service</th>
+                                <th>Date/Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsTable">
+                            <!-- Data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Edit Modal -->
+                <div id="editModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Edit Service Request</h3>
+                            <span class="close-modal">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editForm">
+                                <input type="hidden" id="editId">
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editFullName">Full Name</label>
+                                        <input type="text" id="editFullName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editPhone">Phone</label>
+                                        <input type="tel" id="editPhone" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editEmail">Email</label>
+                                    <input type="email" id="editEmail" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editAddress">Address</label>
+                                    <input type="text" id="editAddress" required>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editServiceType">Service Type</label>
+                                        <select id="editServiceType" required>
+                                            <option value="house">House Cleaning</option>
+                                            <option value="church">Church Cleaning</option>
+                                            <option value="upholstery">Upholstery Cleaning</option>
+                                            <option value="commercial">Commercial Cleaning</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editBedrooms">Bedrooms</label>
+                                        <select id="editBedrooms">
+                                            <option value="0">None</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editCleaningDate">Cleaning Date</label>
+                                        <input type="date" id="editCleaningDate" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editCleaningTime">Cleaning Time</label>
+                                        <select id="editCleaningTime" required>
+                                            <option value="morning">Morning</option>
+                                            <option value="afternoon">Afternoon</option>
+                                            <option value="evening">Evening</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editDescription">Description</label>
+                                    <textarea id="editDescription" rows="3"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editStatus">Status</label>
+                                    <select id="editStatus" required>
+                                        <option value="pending">Pending</option>
+                                        <option value="confirmed">Confirmed</option>
+                                        <option value="completed">Completed</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="modal-actions">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary close-modal">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="supabase.js"></script>
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
